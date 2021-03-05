@@ -8,8 +8,10 @@ import org.apache.logging.log4j.*;
 import info.u_team.basic_discord_rich_presence.init.BasicDiscordRichPresenceClientConstruct;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.*;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
 
+@Mod(BasicDiscordRichPresenceMod.MODID)
 public class BasicDiscordRichPresenceMod {
 	
 	public static final String MODID = "basicdiscordrichpresence";
