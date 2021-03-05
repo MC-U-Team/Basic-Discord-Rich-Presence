@@ -16,7 +16,7 @@ public class BasicDiscordRichPresenceMod {
 	
 	public static final String MODID = "basicdiscordrichpresence";
 	
-	public static final Logger LOGGER = LogManager.getLogger(MODID);
+	public static final Logger LOGGER = LogManager.getLogger("Basic-Discord-Rich-Presence");
 	
 	public BasicDiscordRichPresenceMod() {
 		tryCheckSigned();
