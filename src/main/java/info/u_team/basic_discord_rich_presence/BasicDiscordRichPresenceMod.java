@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.*;
 
+import info.u_team.basic_discord_rich_presence.init.BasicDiscordRichPresenceClientConstruct;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.*;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
 
@@ -17,6 +19,7 @@ public class BasicDiscordRichPresenceMod {
 	public BasicDiscordRichPresenceMod() {
 		tryCheckSigned();
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> BasicDiscordRichPresenceClientConstruct::construct);
 	}
 	
 	private void tryCheckSigned() {
