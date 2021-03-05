@@ -14,7 +14,7 @@ public class DiscordConfigScreen extends Screen {
 	private final Screen screenBefore;
 	
 	public DiscordConfigScreen(Screen screenBefore) {
-		super(new TranslationTextComponent("screen.uteamcore.config.discord.title"));
+		super(new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.title"));
 		this.screenBefore = screenBefore;
 	}
 	
@@ -49,7 +49,7 @@ public class DiscordConfigScreen extends Screen {
 			}
 		});
 		
-		addButton(new Button(width / 2 - 100, 80, 200, 20, new TranslationTextComponent("screen.uteamcore.config.discord.done"), button -> closeScreen()));
+		addButton(new Button(width / 2 - 100, 80, 200, 20, new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.done"), button -> closeScreen()));
 	}
 	
 	@Override
