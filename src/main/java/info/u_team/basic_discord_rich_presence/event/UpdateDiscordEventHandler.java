@@ -1,8 +1,8 @@
 package info.u_team.basic_discord_rich_presence.event;
 
-import info.u_team.u_team_core.intern.config.ClientConfig;
-import info.u_team.u_team_core.intern.discord.*;
-import info.u_team.u_team_core.intern.discord.DiscordRichPresence.*;
+import info.u_team.basic_discord_rich_presence.config.ClientConfig;
+import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
+import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.screen.*;

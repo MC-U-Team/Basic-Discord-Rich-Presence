@@ -1,13 +1,16 @@
 package info.u_team.basic_discord_rich_presence.init;
 
+import info.u_team.basic_discord_rich_presence.config.ClientConfig;
+import info.u_team.basic_discord_rich_presence.event.UpdateDiscordEventHandler;
 import info.u_team.basic_discord_rich_presence.screen.DiscordConfigScreen;
-import info.u_team.u_team_core.intern.discord.UpdateDiscordEventHandler;
 import net.minecraftforge.fml.*;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.config.ModConfig.Type;
 
 public class BasicDiscordRichPresenceClientConstruct {
 	
 	public static void construct() {
+		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.CONFIG);
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (minecraft, screen) -> new DiscordConfigScreen(screen));
 		
 		UpdateDiscordEventHandler.registerMod(Bus.MOD.bus().get());
