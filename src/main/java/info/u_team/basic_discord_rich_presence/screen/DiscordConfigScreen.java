@@ -22,8 +22,8 @@ public class DiscordConfigScreen extends Screen {
 	protected void init() {
 		final BooleanValue discordRichPresence = ClientConfig.getInstance().discordRichPresence;
 		
-		final ITextComponent on = new TranslationTextComponent("screen.uteamcore.config.discord.on");
-		final ITextComponent off = new TranslationTextComponent("screen.uteamcore.config.discord.off");
+		final ITextComponent on = new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.on");
+		final ITextComponent off = new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.off");
 		
 		addButton(new Button(width / 2 - 100, 50, 200, 20, discordRichPresence.get() ? on : off, button -> {
 			discordRichPresence.set(!discordRichPresence.get());
