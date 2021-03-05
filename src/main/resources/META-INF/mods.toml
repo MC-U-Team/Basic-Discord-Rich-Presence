@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+issueTrackerURL="https://github.com/MC-U-Team/Basic-Discord-Rich-Presence/issues"
+displayURL="https://u-team.info/mods/basicdiscordrichpresence"
+logoFile="logo.png"
+license="Apache-2.0 License"
+credits="Team U-Team"
+authors="HyCraftHD"
+
+[[mods]]
+	modId="basicdiscordrichpresence"
+	version="${file.jarVersion}"
+	displayName="Basic Discord Rich Presence"
+	updateJSONURL="https://api.u-team.info/update/basicdiscordrichpresence.json"
+	description="This mod adds a basic discord rich presence. The rich presence was in uteamcore until 1.16.4, now for 1.16.5+ it's a seperate project."
+	
+	[[dependencies.basicdiscordrichpresence]]
+	    modId="forge"
+	    mandatory=true
+	    versionRange="[36.0.22,)"
+	    ordering="NONE"
+	    side="BOTH"
+	
+	[[dependencies.basicdiscordrichpresence]]
+	    modId="minecraft"
+	    mandatory=true
+	    versionRange="[1.16.5]"
+	    ordering="NONE"
+	    side="BOTH"
