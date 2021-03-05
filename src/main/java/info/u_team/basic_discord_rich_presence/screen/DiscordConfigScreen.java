@@ -39,15 +39,8 @@ public class DiscordConfigScreen extends Screen {
 				DiscordRichPresence.stop();
 			}
 			
-			// toggleDiscordRichPresenceButton.setActivated(discordRichPresence.get());
 			button.setMessage(discordRichPresence.get() ? on : off);
-		}) {
-			
-			@Override
-			public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-				super.renderButton(matrixStack, mouseX, mouseY, partialTicks);
-			}
-		});
+		}));
 		
 		addButton(new Button(width / 2 - 100, 80, 200, 20, new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.done"), button -> closeScreen()));
 	}
