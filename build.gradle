@@ -120,11 +120,11 @@ sourceSets {
 	main {
 		java {
 			srcDirs += "src/data/java"
-			srcDirs += "src/api/java"
-			srcDirs += "src/integration/java"
+			srcDirs += "src/repack/java"
 		}
 		resources {
 			srcDirs += "src/generated/resources"
+			srcDirs += "src/repack/resources"
 		}
 	}
 }
