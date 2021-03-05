@@ -27,7 +27,7 @@ public class DiscordRichPresence {
 	private static TimerTask timerTask;
 	
 	static {
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> stop(), "Discord Rich Presence Stop Thread"));
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> stop(), "Basic-Discord-Rich-Presence Stop Thread"));
 	}
 	
 	public static void start() {
