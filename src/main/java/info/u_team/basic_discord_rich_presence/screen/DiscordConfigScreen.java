@@ -2,11 +2,10 @@ package info.u_team.basic_discord_rich_presence.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import info.u_team.basic_discord_rich_presence.config.ClientConfig;
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
-import info.u_team.u_team_core.gui.elements.*;
-import info.u_team.u_team_core.intern.config.ClientConfig;
-import info.u_team.u_team_core.util.RGBA;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.text.*;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 
@@ -26,8 +25,7 @@ public class DiscordConfigScreen extends Screen {
 		final ITextComponent on = new TranslationTextComponent("screen.uteamcore.config.discord.on");
 		final ITextComponent off = new TranslationTextComponent("screen.uteamcore.config.discord.off");
 		
-		final ScalableActivatableButton toggleDiscordRichPresenceButton = addButton(new ScalableActivatableButton(width / 2 - 100, 50, 200, 20, discordRichPresence.get() ? on : off, 1, discordRichPresence.get(), new RGBA(0x006442FF)));
-		toggleDiscordRichPresenceButton.setPressable(() -> {
+		addButton(new Button(width / 2 - 100, 50, 200, 20, discordRichPresence.get() ? on : off, button -> {
 			discordRichPresence.set(!discordRichPresence.get());
 			
 			if (discordRichPresence.get() && !DiscordRichPresence.isEnabled()) {
@@ -41,11 +39,17 @@ public class DiscordConfigScreen extends Screen {
 				DiscordRichPresence.stop();
 			}
 			
-			toggleDiscordRichPresenceButton.setActivated(discordRichPresence.get());
-			toggleDiscordRichPresenceButton.setMessage(discordRichPresence.get() ? on : off);
+			// toggleDiscordRichPresenceButton.setActivated(discordRichPresence.get());
+			button.setMessage(discordRichPresence.get() ? on : off);
+		}) {
+			
+			@Override
+			public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+				super.renderButton(matrixStack, mouseX, mouseY, partialTicks);
+			}
 		});
 		
-		addButton(new UButton(width / 2 - 100, 80, 200, 20, new TranslationTextComponent("screen.uteamcore.config.discord.done"), button -> closeScreen()));
+		addButton(new Button(width / 2 - 100, 80, 200, 20, new TranslationTextComponent("screen.uteamcore.config.discord.done"), button -> closeScreen()));
 	}
 	
 	@Override
