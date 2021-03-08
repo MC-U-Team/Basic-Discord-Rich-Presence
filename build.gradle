@@ -6,7 +6,7 @@ buildscript {
 		maven {
 			url = "https://repo.u-team.info"
 		}
-		jcenter()
+		mavenCentral()
 	}
 	dependencies {
 		classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "4.0.11", changing: true
@@ -83,7 +83,7 @@ task deobfJar(type: Jar) {
 	from sourceSets.main.output
 	from "LICENSE"
 	from "src/repack/resources/LICENSE-DEPENDENCIES"
-		
+	
 	exclude(".cache")
 	
 	manifest normalManifest
