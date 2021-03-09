@@ -8,7 +8,7 @@
 ![Discord](https://img.shields.io/discord/297104769649213441?label=Discord)
 ](https://discordapp.com/invite/QXbWS36)
 
-### This mod adds three new backpacks to the game which enhance your gaming experience.
+### This mod adds a basic discord rich presence. The rich presence was in uteamcore until 1.16.4, now for 1.16.5+ it's a seperate project.
 
 - Download on [curseforge](https://www.curseforge.com/minecraft/mc-mods/basic-discord-rich-presence).  
 - Find more information on our [website](https://u-team.info/mods/basicdiscordrichpresence).
