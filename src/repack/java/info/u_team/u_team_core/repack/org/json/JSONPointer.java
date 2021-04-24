@@ -3,8 +3,11 @@ package info.u_team.u_team_core.repack.org.json;
 import static java.lang.String.format;
 
 import java.io.UnsupportedEncodingException;
-import java.net.*;
-import java.util.*;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /*
  * Copyright (c) 2002 JSON.org Permission is hereby granted, free of charge, to any person obtaining a copy of this

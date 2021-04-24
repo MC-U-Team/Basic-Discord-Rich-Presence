@@ -10,7 +10,8 @@ package info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities;
 
 import java.time.OffsetDateTime;
 
-import info.u_team.u_team_core.repack.org.json.*;
+import info.u_team.u_team_core.repack.org.json.JSONArray;
+import info.u_team.u_team_core.repack.org.json.JSONObject;
 
 /**
  * An encapsulation of all data needed to properly construct a JSON RichPresence payload.

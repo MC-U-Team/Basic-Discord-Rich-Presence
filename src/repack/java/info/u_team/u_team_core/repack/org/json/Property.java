@@ -12,7 +12,8 @@ package info.u_team.u_team_core.repack.org.json;
  * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Properties;
 
 /**
  * Converts a Property file data into JSONObject and back.

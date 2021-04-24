@@ -8,7 +8,8 @@
  */
 package info.u_team.u_team_core.repack.com.jagrosh.discordipc;
 
-import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.*;
+import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.Packet;
+import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.User;
 import info.u_team.u_team_core.repack.org.json.JSONObject;
 
 /**

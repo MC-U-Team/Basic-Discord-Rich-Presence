@@ -1,7 +1,8 @@
 package info.u_team.basic_discord_rich_presence.discord;
 
 import java.time.OffsetDateTime;
-import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.IPCClient;

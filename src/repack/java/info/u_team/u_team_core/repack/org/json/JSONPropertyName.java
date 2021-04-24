@@ -16,7 +16,9 @@ package info.u_team.u_team_core.repack.org.json;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
 @Documented
 @Retention(RUNTIME)

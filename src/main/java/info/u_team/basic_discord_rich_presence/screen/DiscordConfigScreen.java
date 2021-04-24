@@ -6,7 +6,8 @@ import info.u_team.basic_discord_rich_presence.config.ClientConfig;
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.text.*;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 
 public class DiscordConfigScreen extends Screen {

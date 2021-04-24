@@ -12,7 +12,8 @@ package info.u_team.u_team_core.repack.org.json;
  * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-import java.io.*;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.Iterator;
 
 /**

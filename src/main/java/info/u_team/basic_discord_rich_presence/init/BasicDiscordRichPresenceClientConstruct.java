@@ -3,7 +3,8 @@ package info.u_team.basic_discord_rich_presence.init;
 import info.u_team.basic_discord_rich_presence.config.ClientConfig;
 import info.u_team.basic_discord_rich_presence.event.UpdateDiscordEventHandler;
 import info.u_team.basic_discord_rich_presence.screen.DiscordConfigScreen;
-import net.minecraftforge.fml.*;
+import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig.Type;
 

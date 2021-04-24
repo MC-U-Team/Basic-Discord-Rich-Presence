@@ -2,10 +2,13 @@ package info.u_team.basic_discord_rich_presence.event;
 
 import info.u_team.basic_discord_rich_presence.config.ClientConfig;
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
-import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence.*;
+import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence.EnumState;
+import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence.State;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screen.MainMenuScreen;
+import net.minecraft.client.gui.screen.MultiplayerScreen;
+import net.minecraft.client.gui.screen.WorldSelectionScreen;
 import net.minecraftforge.client.event.GuiScreenEvent.InitGuiEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;

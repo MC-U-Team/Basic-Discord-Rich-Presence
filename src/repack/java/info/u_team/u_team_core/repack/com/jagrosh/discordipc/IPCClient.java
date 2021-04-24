@@ -9,16 +9,25 @@
 
 package info.u_team.u_team_core.repack.com.jagrosh.discordipc;
 
-import java.io.*;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.lang.management.ManagementFactory;
-import java.util.*;
+import java.util.HashMap;
+import java.util.UUID;
 
-import org.apache.logging.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.*;
+import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.Callback;
+import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.DiscordBuild;
+import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.Packet;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.Packet.OpCode;
+import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.RichPresence;
+import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.User;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.exceptions.NoDiscordClientException;
-import info.u_team.u_team_core.repack.org.json.*;
+import info.u_team.u_team_core.repack.org.json.JSONException;
+import info.u_team.u_team_core.repack.org.json.JSONObject;
 
 /**
  * Represents a Discord IPC Client that can send and receive Rich Presence data.
