@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/MC-U-Team/Basic-Discord-Rich-Presence/issues
 license="Apache-2.0 License"
 
 [[mods]]
-	modId="musicplayer"
+	modId="basicdiscordrichpresence"
 	version="${file.jarVersion}"
 	displayName="Basic Discord Rich Presence"
 	displayURL="https://u-team.info/mods/basicdiscordrichpresence"
