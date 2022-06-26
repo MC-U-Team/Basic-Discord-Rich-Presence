@@ -1,13 +1,12 @@
 package info.u_team.basic_discord_rich_presence.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import info.u_team.basic_discord_rich_presence.config.ClientConfig;
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 
 public class DiscordConfigScreen extends Screen {
@@ -15,7 +14,7 @@ public class DiscordConfigScreen extends Screen {
 	private final Screen screenBefore;
 	
 	public DiscordConfigScreen(Screen screenBefore) {
-		super(new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.title"));
+		super(Component.translatable("screen.basicdiscordrichpresence.config.discord.title"));
 		this.screenBefore = screenBefore;
 	}
 	
@@ -23,18 +22,18 @@ public class DiscordConfigScreen extends Screen {
 	protected void init() {
 		final BooleanValue discordRichPresence = ClientConfig.getInstance().discordRichPresence;
 		
-		final ITextComponent on = new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.on");
-		final ITextComponent off = new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.off");
+		final Component on = Component.translatable("screen.basicdiscordrichpresence.config.discord.on");
+		final Component off = Component.translatable("screen.basicdiscordrichpresence.config.discord.off");
 		
-		addButton(new Button(width / 2 - 100, 50, 200, 20, discordRichPresence.get() ? on : off, button -> {
+		addRenderableWidget(new Button(width / 2 - 100, 50, 200, 20, discordRichPresence.get() ? on : off, button -> {
 			discordRichPresence.set(!discordRichPresence.get());
 			
 			if (discordRichPresence.get() && !DiscordRichPresence.isEnabled()) {
 				DiscordRichPresence.start();
-				if (minecraft.world == null) {
+				if (minecraft.level == null) {
 					DiscordRichPresence.setIdling();
 				} else {
-					DiscordRichPresence.setDimension(minecraft.world);
+					DiscordRichPresence.setDimension(minecraft.level);
 				}
 			} else if (!discordRichPresence.get() && DiscordRichPresence.isEnabled()) {
 				DiscordRichPresence.stop();
@@ -43,20 +42,19 @@ public class DiscordConfigScreen extends Screen {
 			button.setMessage(discordRichPresence.get() ? on : off);
 		}));
 		
-		addButton(new Button(width / 2 - 100, 80, 200, 20, new TranslationTextComponent("screen.basicdiscordrichpresence.config.discord.done"), button -> closeScreen()));
+		addRenderableWidget(new Button(width / 2 - 100, 80, 200, 20, Component.translatable("screen.basicdiscordrichpresence.config.discord.done"), button -> onClose()));
 	}
 	
 	@Override
-	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-		renderBackground(matrixStack);
-		drawCenteredString(matrixStack, font, title, width / 2, 15, 0xFFFFFF);
-		super.render(matrixStack, mouseX, mouseY, partialTicks);
-		buttons.forEach(widget -> widget.renderToolTip(matrixStack, mouseX, mouseY));
+	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+		renderBackground(poseStack);
+		drawCenteredString(poseStack, font, title, width / 2, 15, 0xFFFFFF);
+		super.render(poseStack, mouseX, mouseY, partialTicks);
 	}
 	
 	@Override
-	public void closeScreen() {
-		minecraft.displayGuiScreen(screenBefore);
+	public void onClose() {
+		minecraft.setScreen(screenBefore);
 	}
 	
 }

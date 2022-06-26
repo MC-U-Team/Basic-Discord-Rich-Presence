@@ -2,18 +2,17 @@ package info.u_team.basic_discord_rich_presence;
 
 import java.lang.reflect.Method;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import info.u_team.basic_discord_rich_presence.init.BasicDiscordRichPresenceClientConstruct;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.IExtensionPoint.DisplayTest;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.network.FMLNetworkConstants;
+import net.minecraftforge.network.NetworkConstants;
 
 @Mod(BasicDiscordRichPresenceMod.MODID)
 public class BasicDiscordRichPresenceMod {
@@ -24,7 +23,7 @@ public class BasicDiscordRichPresenceMod {
 	
 	public BasicDiscordRichPresenceMod() {
 		tryCheckSigned();
-		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+		ModLoadingContext.get().registerExtensionPoint(DisplayTest.class, () -> new DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (remoteVersion, network) -> true));
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> BasicDiscordRichPresenceClientConstruct::construct);
 	}
 	
@@ -37,8 +36,8 @@ public class BasicDiscordRichPresenceMod {
 				return;
 			}
 		} catch (final Exception ex) {
+			LOGGER.warn("JarSignVerifier could not be executed, because uteamcore is not installed.");
 		}
-		LOGGER.warn("JarSignVerifier could not be executed, because uteamcore is not installed.");
 	}
 	
 }

@@ -8,8 +8,8 @@ import info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.IPCClient;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.RichPresence.Builder;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.exceptions.NoDiscordClientException;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.versions.mcp.MCPVersion;
 
@@ -70,17 +70,17 @@ public class DiscordRichPresence {
 		setState(new State(EnumState.MENU));
 	}
 	
-	public static void setDimension(World world) {
-		setState(getStateFromDimension(world));
+	public static void setDimension(Level level) {
+		setState(getStateFromDimension(level));
 	}
 	
-	public static State getStateFromDimension(World world) {
-		final ResourceLocation dimensionKey = world.getDimensionKey().getLocation();
-		if (dimensionKey.equals(World.OVERWORLD.getLocation())) {
+	public static State getStateFromDimension(Level level) {
+		final ResourceLocation dimensionKey = level.dimension().location();
+		if (dimensionKey.equals(Level.OVERWORLD.location())) {
 			return new State(EnumState.OVERWORLD);
-		} else if (dimensionKey.equals(World.THE_NETHER.getLocation())) {
+		} else if (dimensionKey.equals(Level.NETHER.location())) {
 			return new State(EnumState.NETHER);
-		} else if (dimensionKey.equals(World.THE_END.getLocation())) {
+		} else if (dimensionKey.equals(Level.END.location())) {
 			return new State(EnumState.END);
 		} else {
 			return new State(EnumState.DIM, dimensionKey.getPath());
