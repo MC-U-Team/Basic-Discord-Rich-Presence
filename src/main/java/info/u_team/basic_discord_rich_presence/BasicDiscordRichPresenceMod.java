@@ -1,9 +1,13 @@
 package info.u_team.basic_discord_rich_presence;
 
-import java.lang.reflect.Method;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodHandles.Lookup;
+import java.lang.invoke.MethodType;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+
+import com.mojang.logging.LogUtils;
 
 import info.u_team.basic_discord_rich_presence.init.BasicDiscordRichPresenceClientConstruct;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,7 +23,7 @@ public class BasicDiscordRichPresenceMod {
 	
 	public static final String MODID = "basicdiscordrichpresence";
 	
-	public static final Logger LOGGER = LogManager.getLogger("Basic-Discord-Rich-Presence");
+	public static final Logger LOGGER = LogUtils.getLogger();
 	
 	public BasicDiscordRichPresenceMod() {
 		tryCheckSigned();
@@ -31,12 +35,14 @@ public class BasicDiscordRichPresenceMod {
 		try {
 			if (ModList.get().isLoaded("uteamcore")) {
 				final Class<?> clazz = Class.forName("info.u_team.u_team_core.util.verify.JarSignVerifier");
-				final Method method = clazz.getDeclaredMethod("checkSigned", String.class);
-				method.invoke(null, MODID);
+				
+				final Lookup lookup = MethodHandles.publicLookup();
+				final MethodHandle method = lookup.findStatic(clazz, "checkSigned", MethodType.methodType(void.class, String.class));
+				method.invoke(MODID);
 				return;
 			}
-		} catch (final Exception ex) {
-			LOGGER.warn("JarSignVerifier could not be executed, because uteamcore is not installed.");
+		} catch (final Throwable th) {
+			LOGGER.warn("JarSignVerifier could not be executed, because uteamcore is not installed.", th);
 		}
 	}
 	
