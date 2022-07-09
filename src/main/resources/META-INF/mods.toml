@@ -12,7 +12,7 @@ license="Apache-2.0 License"
 	logoFile="logo.png"
 	credits="Team U-Team"
 	authors="HyCraftHD"
-	description="This mod adds a basic discord rich presence. The rich presence was in uteamcore until 1.16.4, now for 1.16.5+ it's a seperate project."
+	description="Join our discord server here: https://discord.hycrafthd.net\n\nThis mod adds a basic discord rich presence. The rich presence was in uteamcore until 1.16.4, now for 1.16.5+ it's a seperate project."
 		
 	[[dependencies.basicdiscordrichpresence]]
 		modId="forge"
