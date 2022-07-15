@@ -9,8 +9,8 @@ import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraftforge.client.event.ScreenEvent.InitScreenEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
@@ -22,7 +22,7 @@ public class UpdateDiscordEventHandler {
 		}
 	}
 	
-	private static void onInitGuiPre(InitScreenEvent.Pre event) {
+	private static void screenEventInitPre(ScreenEvent.Init.Pre event) {
 		if (!DiscordRichPresence.isEnabled()) {
 			return;
 		}
@@ -34,7 +34,7 @@ public class UpdateDiscordEventHandler {
 		}
 	}
 	
-	private static void onEntityJoinWorld(EntityJoinWorldEvent event) {
+	private static void entityJoinLevel(EntityJoinLevelEvent event) {
 		if (!DiscordRichPresence.isEnabled()) {
 			return;
 		}
@@ -51,7 +51,7 @@ public class UpdateDiscordEventHandler {
 	}
 	
 	public static void registerForge(IEventBus bus) {
-		bus.addListener(UpdateDiscordEventHandler::onInitGuiPre);
-		bus.addListener(UpdateDiscordEventHandler::onEntityJoinWorld);
+		bus.addListener(UpdateDiscordEventHandler::screenEventInitPre);
+		bus.addListener(UpdateDiscordEventHandler::entityJoinLevel);
 	}
 }

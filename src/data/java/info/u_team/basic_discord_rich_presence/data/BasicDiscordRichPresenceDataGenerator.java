@@ -2,10 +2,10 @@ package info.u_team.basic_discord_rich_presence.data;
 
 import info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod;
 import info.u_team.basic_discord_rich_presence.data.provider.BasicDiscordRichPresenceEnLanguageProvider;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @EventBusSubscriber(modid = BasicDiscordRichPresenceMod.MODID, bus = Bus.MOD)
 public class BasicDiscordRichPresenceDataGenerator {
