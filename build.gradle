@@ -38,7 +38,7 @@ java {
 
 minecraft {
 	mappings channel: config.forge.mapping_channel, version: config.forge.mapping
-		
+	
 	runs {
 		client = {
 			workingDirectory file("run/client")
@@ -66,7 +66,7 @@ minecraft {
 			args "--output", file("src/generated/resources")
 			args "--validate"
 			args "--existing", file("src/main/resources")
-						
+			
 			mods {
 				"${config.mod.modid}" {
 					source sourceSets.main
