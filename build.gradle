@@ -118,7 +118,7 @@ sourceSets {
 dependencies {
 	minecraft gradlefiles.forgeDependency()
 	
-	runtimeOnly fg.deobf("info.u-team:u_team_core-1.19.2:4.4.3.235")
+	runtimeOnly fg.deobf("info.u-team:u_team_core-1.19.2:4.4.3.236")
 }
 
 curseforge {
