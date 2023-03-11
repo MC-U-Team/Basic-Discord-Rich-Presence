@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[43,)"
+loaderVersion="[44,)"
 issueTrackerURL="https://github.com/MC-U-Team/Basic-Discord-Rich-Presence/issues"
 license="Apache-2.0 License"
 
@@ -17,13 +17,13 @@ license="Apache-2.0 License"
 	[[dependencies.basicdiscordrichpresence]]
 		modId="forge"
 		mandatory=true
-		versionRange="[43.2.0,)"
+		versionRange="[44.1.17,)"
 		ordering="NONE"
 		side="BOTH"
 	
 	[[dependencies.basicdiscordrichpresence]]
 		modId="minecraft"
 		mandatory=true
-		versionRange="[1.19.2]"
+		versionRange="[1.19.3]"
 		ordering="NONE"
 		side="BOTH"
