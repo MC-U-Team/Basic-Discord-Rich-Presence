@@ -25,7 +25,7 @@ public class DiscordConfigScreen extends Screen {
 		final Component on = Component.translatable("screen.basicdiscordrichpresence.config.discord.on");
 		final Component off = Component.translatable("screen.basicdiscordrichpresence.config.discord.off");
 		
-		addRenderableWidget(new Button(width / 2 - 100, 50, 200, 20, discordRichPresence.get() ? on : off, button -> {
+		addRenderableWidget(Button.builder(discordRichPresence.get() ? on : off, button -> {
 			discordRichPresence.set(!discordRichPresence.get());
 			
 			if (discordRichPresence.get() && !DiscordRichPresence.isEnabled()) {
@@ -38,11 +38,10 @@ public class DiscordConfigScreen extends Screen {
 			} else if (!discordRichPresence.get() && DiscordRichPresence.isEnabled()) {
 				DiscordRichPresence.stop();
 			}
-			
 			button.setMessage(discordRichPresence.get() ? on : off);
-		}));
+		}).pos(width / 2 - 100, 50).size(200, 20).build());
 		
-		addRenderableWidget(new Button(width / 2 - 100, 80, 200, 20, Component.translatable("screen.basicdiscordrichpresence.config.discord.done"), button -> onClose()));
+		addRenderableWidget(Button.builder(Component.translatable("screen.basicdiscordrichpresence.config.discord.done"), button -> onClose()).pos(width / 2 - 100, 80).size(200, 20).build());
 	}
 	
 	@Override

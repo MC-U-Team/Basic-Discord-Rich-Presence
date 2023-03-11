@@ -12,7 +12,7 @@ public class BasicDiscordRichPresenceDataGenerator {
 	
 	@SubscribeEvent
 	public static void data(GatherDataEvent event) {
-		event.getGenerator().addProvider(event.includeClient(), new BasicDiscordRichPresenceEnLanguageProvider(event.getGenerator()));
+		event.getGenerator().addProvider(event.includeClient(), new BasicDiscordRichPresenceEnLanguageProvider(event.getGenerator().getPackOutput()));
 	}
 	
 }

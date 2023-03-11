@@ -1,13 +1,13 @@
 package info.u_team.basic_discord_rich_presence.data.provider;
 
 import info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class BasicDiscordRichPresenceEnLanguageProvider extends LanguageProvider {
 	
-	public BasicDiscordRichPresenceEnLanguageProvider(DataGenerator generator) {
-		super(generator, BasicDiscordRichPresenceMod.MODID, "en_us");
+	public BasicDiscordRichPresenceEnLanguageProvider(PackOutput packOutput) {
+		super(packOutput, BasicDiscordRichPresenceMod.MODID, "en_us");
 	}
 	
 	@Override
