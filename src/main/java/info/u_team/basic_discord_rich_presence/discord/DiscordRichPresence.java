@@ -3,6 +3,8 @@ package info.u_team.basic_discord_rich_presence.discord;
 import java.time.OffsetDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.IPCClient;
@@ -16,6 +18,8 @@ import net.minecraftforge.versions.mcp.MCPVersion;
 public class DiscordRichPresence {
 	
 	private static final IPCClient CLIENT = new IPCClient(427196986064764928L);
+	
+	private static final ExecutorService executor = Executors.newSingleThreadExecutor();
 	
 	private static boolean isEnabled = false;
 	
@@ -32,38 +36,42 @@ public class DiscordRichPresence {
 	}
 	
 	public static void start() {
-		try {
-			CLIENT.connect();
-			TIMER.schedule(timerTask = new TimerTask() {
-				
-				@Override
-				public void run() {
-					setState(currentState);
-				}
-			}, 1000, 1000 * 120);
-			isEnabled = true;
-			BasicDiscordRichPresenceMod.LOGGER.info("Discord client found and connected.");
-		} catch (final NoDiscordClientException ex) {
-			BasicDiscordRichPresenceMod.LOGGER.info("Discord client was not found.");
-		}
+		executor.execute(() -> {
+			try {
+				CLIENT.connect();
+				TIMER.schedule(timerTask = new TimerTask() {
+					
+					@Override
+					public void run() {
+						setState(currentState);
+					}
+				}, 1000, 1000 * 120);
+				isEnabled = true;
+				BasicDiscordRichPresenceMod.LOGGER.info("Discord client found and connected.");
+			} catch (final NoDiscordClientException ex) {
+				BasicDiscordRichPresenceMod.LOGGER.info("Discord client was not found.");
+			}
+		});
 	}
 	
 	public static void stop() {
-		boolean wasConnected = false;
-		if (timerTask != null) {
-			wasConnected = true;
-			timerTask.cancel();
-			timerTask = null;
-		}
-		try {
-			CLIENT.close();
-		} catch (final Exception ex) {
-		}
-		errorCount = 0;
-		isEnabled = false;
-		if (wasConnected) {
-			BasicDiscordRichPresenceMod.LOGGER.info("Discord client closed.");
-		}
+		executor.execute(() -> {
+			boolean wasConnected = false;
+			if (timerTask != null) {
+				wasConnected = true;
+				timerTask.cancel();
+				timerTask = null;
+			}
+			try {
+				CLIENT.close();
+			} catch (final Exception ex) {
+			}
+			errorCount = 0;
+			isEnabled = false;
+			if (wasConnected) {
+				BasicDiscordRichPresenceMod.LOGGER.info("Discord client closed.");
+			}
+		});
 	}
 	
 	public static void setIdling() {
@@ -88,34 +96,36 @@ public class DiscordRichPresence {
 	}
 	
 	public static void setState(State state) {
-		currentState = state;
-		final Builder builder = new Builder();
-		builder.setDetails(MCPVersion.getMCVersion() + " with " + ModList.get().size() + " Mods");
-		builder.setState(state.getState().getMessage(state.getReplace()));
-		builder.setStartTimestamp(TIME);
-		builder.setLargeImage(state.getState().getImageKey(), state.getState().getImageName(state.getReplace()));
-		if (state.getState() == EnumState.MENU || state.getState() == EnumState.STARTUP) {
-			builder.setSmallImage("uteamcore", "U-Team Core");
-		}
-		try {
-			CLIENT.sendRichPresence(builder.build());
-		} catch (final Exception ex) {
+		executor.execute(() -> {
+			currentState = state;
+			final Builder builder = new Builder();
+			builder.setDetails(MCPVersion.getMCVersion() + " with " + ModList.get().size() + " Mods");
+			builder.setState(state.getState().getMessage(state.getReplace()));
+			builder.setStartTimestamp(TIME);
+			builder.setLargeImage(state.getState().getImageKey(), state.getState().getImageName(state.getReplace()));
+			if (state.getState() == EnumState.MENU || state.getState() == EnumState.STARTUP) {
+				builder.setSmallImage("uteamcore", "U-Team Core");
+			}
 			try {
-				CLIENT.connect();
-				errorCount = 0;
 				CLIENT.sendRichPresence(builder.build());
-			} catch (final Exception ex2) {
+			} catch (final Exception ex) {
 				try {
-					CLIENT.close();
-				} catch (final Exception ex3) {
-				}
-				errorCount++;
-				if (errorCount > 10) {
-					BasicDiscordRichPresenceMod.LOGGER.info("Discord rich presence stopped cause connection is not working.");
-					stop();
+					CLIENT.connect();
+					errorCount = 0;
+					CLIENT.sendRichPresence(builder.build());
+				} catch (final Exception ex2) {
+					try {
+						CLIENT.close();
+					} catch (final Exception ex3) {
+					}
+					errorCount++;
+					if (errorCount > 10) {
+						BasicDiscordRichPresenceMod.LOGGER.info("Discord rich presence stopped cause connection is not working.");
+						stop();
+					}
 				}
 			}
-		}
+		});
 	}
 	
 	public static boolean isEnabled() {
