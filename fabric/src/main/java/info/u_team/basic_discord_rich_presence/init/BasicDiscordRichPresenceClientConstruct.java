@@ -2,6 +2,7 @@ package info.u_team.basic_discord_rich_presence.init;
 
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence.DetailsCallback;
+import info.u_team.basic_discord_rich_presence.event.UpdateDiscordEventHandler;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 
@@ -22,8 +23,7 @@ public class BasicDiscordRichPresenceClientConstruct {
 			
 		});
 		
-		// UpdateDiscordEventHandler.registerMod(Bus.MOD.bus().get());
-		// UpdateDiscordEventHandler.registerForge(Bus.FORGE.bus().get());
+		UpdateDiscordEventHandler.register();
 	}
 	
 }
