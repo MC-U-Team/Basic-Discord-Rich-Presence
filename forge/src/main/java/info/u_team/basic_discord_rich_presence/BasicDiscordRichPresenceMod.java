@@ -5,10 +5,6 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.invoke.MethodType;
 
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
 import info.u_team.basic_discord_rich_presence.init.BasicDiscordRichPresenceClientConstruct;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
@@ -21,9 +17,7 @@ import net.minecraftforge.network.NetworkConstants;
 @Mod(BasicDiscordRichPresenceMod.MODID)
 public class BasicDiscordRichPresenceMod {
 	
-	public static final String MODID = "basicdiscordrichpresence";
-	
-	public static final Logger LOGGER = LogUtils.getLogger();
+	public static final String MODID = BasicDiscordRichPresenceReference.MODID;
 	
 	public BasicDiscordRichPresenceMod() {
 		tryCheckSigned();
@@ -42,7 +36,7 @@ public class BasicDiscordRichPresenceMod {
 				return;
 			}
 		} catch (final Throwable th) {
-			LOGGER.warn("JarSignVerifier could not be executed, because uteamcore is not installed.", th);
+			BasicDiscordRichPresenceReference.LOGGER.warn("JarSignVerifier could not be executed, because uteamcore is not installed.", th);
 		}
 	}
 	

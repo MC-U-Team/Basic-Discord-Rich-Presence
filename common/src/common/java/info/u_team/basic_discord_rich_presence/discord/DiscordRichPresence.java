@@ -6,15 +6,15 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod;
+import info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceReference;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.IPCClient;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.entities.RichPresence.Builder;
 import info.u_team.u_team_core.repack.com.jagrosh.discordipc.exceptions.NoDiscordClientException;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.versions.mcp.MCPVersion;
 
+// TODO horrible code, rework sometime in the future :D
 public class DiscordRichPresence {
 	
 	private static final IPCClient CLIENT = new IPCClient(427196986064764928L);
@@ -31,8 +31,34 @@ public class DiscordRichPresence {
 	private static final Timer TIMER = new Timer("Discord Rich Presence Timer Thread");
 	private static TimerTask timerTask;
 	
+	private static DetailsCallback callback = DetailsCallback.DEFAULT;
+	
 	static {
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> stop(), "Basic-Discord-Rich-Presence Stop Thread"));
+	}
+	
+	public interface DetailsCallback {
+		
+		static DetailsCallback DEFAULT = new DetailsCallback() {
+			
+			@Override
+			public String getMinecraftVersion() {
+				return Minecraft.getInstance().getLaunchedVersion();
+			}
+			
+			@Override
+			public String getModSize() {
+				return "?";
+			}
+		};
+		
+		String getMinecraftVersion();
+		
+		String getModSize();
+	}
+	
+	public static void setDetailsCallback(DetailsCallback callback) {
+		DiscordRichPresence.callback = callback;
 	}
 	
 	public static void start() {
@@ -47,9 +73,9 @@ public class DiscordRichPresence {
 					}
 				}, 1000, 1000 * 120);
 				isEnabled = true;
-				BasicDiscordRichPresenceMod.LOGGER.info("Discord client found and connected.");
+				BasicDiscordRichPresenceReference.LOGGER.info("Discord client found and connected.");
 			} catch (final NoDiscordClientException ex) {
-				BasicDiscordRichPresenceMod.LOGGER.info("Discord client was not found.");
+				BasicDiscordRichPresenceReference.LOGGER.info("Discord client was not found.");
 			}
 		});
 	}
@@ -69,7 +95,7 @@ public class DiscordRichPresence {
 			errorCount = 0;
 			isEnabled = false;
 			if (wasConnected) {
-				BasicDiscordRichPresenceMod.LOGGER.info("Discord client closed.");
+				BasicDiscordRichPresenceReference.LOGGER.info("Discord client closed.");
 			}
 		});
 	}
@@ -99,7 +125,7 @@ public class DiscordRichPresence {
 		executor.execute(() -> {
 			currentState = state;
 			final Builder builder = new Builder();
-			builder.setDetails(MCPVersion.getMCVersion() + " with " + ModList.get().size() + " Mods");
+			builder.setDetails(callback.getMinecraftVersion() + " with " + callback.getModSize() + " Mods");
 			builder.setState(state.getState().getMessage(state.getReplace()));
 			builder.setStartTimestamp(TIME);
 			builder.setLargeImage(state.getState().getImageKey(), state.getState().getImageName(state.getReplace()));
@@ -120,7 +146,7 @@ public class DiscordRichPresence {
 					}
 					errorCount++;
 					if (errorCount > 10) {
-						BasicDiscordRichPresenceMod.LOGGER.info("Discord rich presence stopped cause connection is not working.");
+						BasicDiscordRichPresenceReference.LOGGER.info("Discord rich presence stopped cause connection is not working.");
 						stop();
 					}
 				}
