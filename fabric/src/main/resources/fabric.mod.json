@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "basicdiscordrichpresence",
+	"version": "${version}",
+	"name": "Basic Discord Rich Presence",
+	"description": "Join our discord server here: https://discord.hycrafthd.net\n\nThis mod adds a basic discord rich presence. The rich presence was in uteamcore until 1.16.4, now for 1.16.5+ it's a seperate project.",
+	"authors": [
+		"HyCraftHD"
+	],
+	"contact": {
+		"homepage": "https://u-team.info/mods/basicdiscordrichpresence",
+		"sources": "https://github.com/MC-U-Team/Basic-Discord-Rich-Presence"
+	},
+	"license": "Apache-2.0 License",
+	"icon": "logo.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.14.19",
+		"minecraft": "1.19.4",
+		"java": ">=17"
+	},
+	"custom": {
+		"uteamcore:update_url": "https://api.u-team.info/update/basicdiscordrichpresence_fabric.json"
+	}
+}
