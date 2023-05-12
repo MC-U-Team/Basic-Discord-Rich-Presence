@@ -59,8 +59,13 @@ processResources {
 
 sourceSets {
 	common {
-		java
-		resources
+		java {
+			srcDirs += "src/repack/java"
+		}
+		resources {
+			srcDirs += "src/common-generated/resources"
+			srcDirs += "src/repack/resources"
+		}
 	}
 	main {
 		java {

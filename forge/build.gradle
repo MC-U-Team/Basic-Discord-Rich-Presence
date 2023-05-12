@@ -104,12 +104,9 @@ sourceSets {
 	main {
 		java {
 			srcDirs += "src/data/java"
-			srcDirs += "src/repack/java"
 			srcDirs += project(":common").sourceSets.common.java.srcDirs
 		}
 		resources {
-			srcDirs += "src/generated/resources"
-			srcDirs += "src/repack/resources"
 			srcDirs += project(":common").sourceSets.common.resources.srcDirs
 		}
 	}
