@@ -25,13 +25,11 @@ apply plugin: "info.u_team.gradle_files"
 apply plugin: "info.u_team.curse_gradle_uploader"
 apply plugin: "maven-publish"
 
-group = "info.u-team"
+gradlefiles.loaderSuffix = "forge"
+
+group = rootProject.group
 archivesBaseName = gradlefiles.archivesBaseName()
 version = gradlefiles.version()
-
-gradlefiles {
-	vendor "Team UTeam"
-}
 
 java {
 	toolchain {
@@ -45,7 +43,7 @@ minecraft {
 	mappings channel: config.forge.mapping_channel, version: config.forge.mapping
 	
 	runs {
-		client = {
+		client {
 			workingDirectory file("run/client")
 			
 			mods {
@@ -54,7 +52,7 @@ minecraft {
 				}
 			}
 		}
-		server = {
+		server {
 			workingDirectory file("run/server")
 			
 			mods {
@@ -63,14 +61,14 @@ minecraft {
 				}
 			}
 		}
-		data = {
+		data {
 			workingDirectory file("run/data")
 			
 			args "--mod", config.mod.modid
 			args "--all"
-			args "--output", file("src/generated/resources")
+			args "--output", project(":common").file("src/common-generated/resources")
 			args "--validate"
-			args "--existing", file("src/main/resources")
+			args "--existing", project(":common").file("src/common/resources")
 			
 			property "coremod.uteamcore.dataprovider-set-indent", "coremod.uteamcore.dataprovider-set-indent.value"
 			property "coremod.uteamcore.dataprovider-set-indent.value", "true"
@@ -107,10 +105,12 @@ sourceSets {
 		java {
 			srcDirs += "src/data/java"
 			srcDirs += "src/repack/java"
+			srcDirs += project(":common").sourceSets.common.java.srcDirs
 		}
 		resources {
 			srcDirs += "src/generated/resources"
 			srcDirs += "src/repack/resources"
+			srcDirs += project(":common").sourceSets.common.resources.srcDirs
 		}
 	}
 }
@@ -118,7 +118,7 @@ sourceSets {
 dependencies {
 	minecraft gradlefiles.forgeDependency()
 	
-	runtimeOnly fg.deobf("info.u-team:u_team_core-1.19.4:4.6.1.243")
+	runtimeOnly fg.deobf("info.u-team:u_team_core-forge-1.19.4:5.0.2.250")
 }
 
 curseforge {
@@ -137,7 +137,7 @@ curseforge {
 		}
 		
 		mainArtifact(tasks.getByName("jar")) {
-			displayName = "${config.curse.display}-${config.minecraft.version}-${project.version}"
+			displayName = "${config.curse.display}-Forge-${config.minecraft.version}-${project.version}"
 			changelogType = "html"
 			changelog = "<a href=\"${gradlefiles.changelogUrl()}\">Changelog of ${project.version}</a>"
 		}
