@@ -9,14 +9,18 @@
 	],
 	"contact": {
 		"homepage": "https://u-team.info/mods/basicdiscordrichpresence",
+		"issues": "https://github.com/MC-U-Team/Basic-Discord-Rich-Presence/issues",
 		"sources": "https://github.com/MC-U-Team/Basic-Discord-Rich-Presence"
 	},
 	"license": "Apache-2.0 License",
 	"icon": "logo.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"client": [
 			"info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod"
+		],
+		"modmenu": [
+			"info.u_team.basic_discord_rich_presence.integration.BasicDiscordRichPresenceModMenuIntegration"
 		]
 	},
 	"depends": {
@@ -26,6 +30,11 @@
 		"java": ">=17"
 	},
 	"custom": {
-		"uteamcore:update_url": "https://api.u-team.info/update/basicdiscordrichpresence_fabric.json"
+		"uteamcore:update_url": "https://api.u-team.info/update/basicdiscordrichpresence_fabric.json",
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.hycrafthd.net"
+			}
+		}
 	}
 }
