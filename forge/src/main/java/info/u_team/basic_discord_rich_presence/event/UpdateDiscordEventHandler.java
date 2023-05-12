@@ -22,7 +22,7 @@ public class UpdateDiscordEventHandler {
 		}
 	}
 	
-	private static void screenEventInitPre(ScreenEvent.Init.Pre event) {
+	private static void onScreenInitPre(ScreenEvent.Init.Pre event) {
 		if (!DiscordRichPresence.isEnabled()) {
 			return;
 		}
@@ -34,7 +34,7 @@ public class UpdateDiscordEventHandler {
 		}
 	}
 	
-	private static void entityJoinLevel(EntityJoinLevelEvent event) {
+	private static void onEntityJoinLevel(EntityJoinLevelEvent event) {
 		if (!DiscordRichPresence.isEnabled()) {
 			return;
 		}
@@ -51,7 +51,7 @@ public class UpdateDiscordEventHandler {
 	}
 	
 	public static void registerForge(IEventBus bus) {
-		bus.addListener(UpdateDiscordEventHandler::screenEventInitPre);
-		bus.addListener(UpdateDiscordEventHandler::entityJoinLevel);
+		bus.addListener(UpdateDiscordEventHandler::onScreenInitPre);
+		bus.addListener(UpdateDiscordEventHandler::onEntityJoinLevel);
 	}
 }
