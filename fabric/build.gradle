@@ -124,6 +124,7 @@ curseforge {
 		addGameVersion "Java 17"
 		
 		relations {
+			requiredDependency "fabric-api"
 			optionalDependency "u-team-core"
 		}
 		
