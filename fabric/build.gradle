@@ -37,7 +37,7 @@ java {
 	withJavadocJar()
 }
 
-loom {	
+loom {
 	runs {
 		client {
 			runDir "run/client"
@@ -84,6 +84,9 @@ repositories {
 	maven {
 		url = "https://maven.parchmentmc.org"
 	}
+	maven {
+		url = "https://maven.terraformersmc.com/releases"
+	}
 }
 
 dependencies {
@@ -95,7 +98,9 @@ dependencies {
 	
 	modImplementation gradlefiles.fabricLoaderDependency()
 	
-	modImplementation "info.u-team:u_team_core-fabric-1.19.4:5.0.2.250"
+	modRuntimeOnly "info.u-team:u_team_core-fabric-1.19.4:5.0.2.250"
+	
+	modRuntimeOnly "com.terraformersmc:modmenu:6.2.2"
 }
 
 processResources {
