@@ -5,7 +5,7 @@ import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence.DetailsCallback;
 import info.u_team.basic_discord_rich_presence.event.UpdateDiscordEventHandler;
 import info.u_team.basic_discord_rich_presence.screen.DiscordConfigScreen;
-import info.u_team.basic_discord_rich_presence.screen.DiscordConfigScreen.ConfigValueHolder;
+import info.u_team.basic_discord_rich_presence.util.ConfigValueHolder;
 import net.minecraftforge.client.ConfigScreenHandler.ConfigScreenFactory;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;

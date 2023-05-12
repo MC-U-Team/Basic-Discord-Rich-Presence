@@ -1,11 +1,9 @@
 package info.u_team.basic_discord_rich_presence.screen;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
+import info.u_team.basic_discord_rich_presence.util.ConfigValueHolder;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -55,17 +53,6 @@ public class DiscordConfigScreen extends Screen {
 	@Override
 	public void onClose() {
 		minecraft.setScreen(screenBefore);
-	}
-	
-	public static record ConfigValueHolder<V> (Supplier<V> getter, Consumer<V> setter) {
-		
-		public V get() {
-			return getter.get();
-		}
-		
-		public void set(V value) {
-			setter.accept(value);
-		}
 	}
 	
 }
