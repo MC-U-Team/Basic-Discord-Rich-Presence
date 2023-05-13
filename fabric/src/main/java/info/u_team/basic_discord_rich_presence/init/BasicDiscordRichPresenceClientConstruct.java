@@ -4,7 +4,7 @@ import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence.DetailsCallback;
 import info.u_team.basic_discord_rich_presence.event.UpdateDiscordEventHandler;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.Minecraft;
+import net.minecraft.SharedConstants;
 
 public class BasicDiscordRichPresenceClientConstruct {
 	
@@ -13,7 +13,7 @@ public class BasicDiscordRichPresenceClientConstruct {
 			
 			@Override
 			public String getMinecraftVersion() {
-				return Minecraft.getInstance().getLaunchedVersion();
+				return SharedConstants.getCurrentVersion().getName();
 			}
 			
 			@Override
