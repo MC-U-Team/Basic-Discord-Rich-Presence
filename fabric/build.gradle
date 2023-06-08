@@ -102,7 +102,7 @@ dependencies {
 	
 	modRuntimeOnly "info.u-team:u_team_core-fabric-1.19.4:5.0.2.250"
 	
-	modImplementation "com.terraformersmc:modmenu:6.2.2"
+	modImplementation "com.terraformersmc:modmenu:7.0.0"
 }
 
 processResources {
