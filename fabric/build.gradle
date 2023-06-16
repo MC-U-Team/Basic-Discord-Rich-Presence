@@ -1,27 +1,9 @@
-buildscript {
-	repositories {
-		maven {
-			url = "https://maven.fabricmc.net"
-		}
-		maven {
-			url = "https://maven.minecraftforge.net"
-		}
-		maven {
-			url = "https://repo.u-team.info"
-		}
-		mavenCentral()
-	}
-	dependencies {
-		classpath group: "fabric-loom", name: "fabric-loom.gradle.plugin", version: "1.1.+", changing: true
-		classpath group: "info.u-team.gradle_files", name: "gradle_files", version: "2.0.5"
-		classpath group: "info.u-team.curse_gradle_uploader", name: "curse_gradle_uploader", version: "1.5.1"
-	}
+plugins {
+	id "fabric-loom"
+	id "info.u_team.gradle_files"
+	id "info.u_team.curse_gradle_uploader"
+	id "maven-publish"
 }
-
-apply plugin: "fabric-loom"
-apply plugin: "info.u_team.gradle_files"
-apply plugin: "info.u_team.curse_gradle_uploader"
-apply plugin: "maven-publish"
 
 gradlefiles.loaderSuffix = "fabric"
 
@@ -51,11 +33,11 @@ loom {
 	}
 }
 
-tasks.withType(Jar) { task ->
+tasks.withType(Jar).configureEach { task ->
 	gradlefiles.defaultJar(task)
 }
 
-tasks.withType(Javadoc) { task ->
+tasks.withType(Javadoc).configureEach { task ->
 	task.options.addStringOption("Xdoclint:none", "-quiet")
 }
 
@@ -72,8 +54,8 @@ processResources {
 sourceSets {
 	main {
 		java {
-			srcDirs += project(":common").sourceSets.common.java.srcDirs
 			srcDirs += "src/integration/java"
+			srcDirs += project(":common").sourceSets.common.java.srcDirs
 		}
 		resources {
 			srcDirs += project(":common").sourceSets.common.resources.srcDirs
@@ -86,7 +68,7 @@ repositories {
 		url = "https://maven.parchmentmc.org"
 	}
 	maven {
-		url = "https://maven.terraformersmc.com/releases"
+		url = "https://maven.terraformersmc.com"
 	}
 }
 
@@ -100,9 +82,9 @@ dependencies {
 	modImplementation gradlefiles.fabricLoaderDependency()
 	modImplementation gradlefiles.fabricApiDependency()
 	
-	modRuntimeOnly "info.u-team:u_team_core-fabric-1.19.4:5.0.2.261"
+	modRuntimeOnly "info.u-team:u_team_core-fabric-1.20.1:5.1.2.264"
 	
-	modImplementation "com.terraformersmc:modmenu:6.2.2"
+	modImplementation "com.terraformersmc:modmenu:7.0.1"
 }
 
 processResources {
