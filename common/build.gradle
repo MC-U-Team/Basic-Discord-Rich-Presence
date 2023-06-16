@@ -37,15 +37,15 @@ processResources {
 }
 
 sourceSets {
-    common {
-        java {
-            srcDirs += "src/common-repack/java"
-        }
-        resources {
-            srcDirs += "src/common-generated/resources"
-            srcDirs += "src/common-repack/resources"
-        }
-    }
+	common {
+		java {
+			srcDirs += "src/common-repack/java"
+		}
+		resources {
+			srcDirs += "src/common-generated/resources"
+			srcDirs += "src/common-repack/resources"
+		}
+	}
 	main {
 		java {
 			srcDirs += sourceSets.common.java.srcDirs
