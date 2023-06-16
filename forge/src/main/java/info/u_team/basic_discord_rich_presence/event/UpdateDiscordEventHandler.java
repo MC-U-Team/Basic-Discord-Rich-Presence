@@ -41,7 +41,7 @@ public class UpdateDiscordEventHandler {
 		if (event.getEntity() instanceof LocalPlayer) {
 			final LocalPlayer player = (LocalPlayer) event.getEntity();
 			if (player.getUUID().equals(Minecraft.getInstance().player.getUUID())) {
-				DiscordRichPresence.setDimension(player.getLevel());
+				DiscordRichPresence.setDimension(player.level());
 			}
 		}
 	}

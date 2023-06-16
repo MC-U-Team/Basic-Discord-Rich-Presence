@@ -1,9 +1,8 @@
 package info.u_team.basic_discord_rich_presence.screen;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import info.u_team.basic_discord_rich_presence.discord.DiscordRichPresence;
 import info.u_team.basic_discord_rich_presence.util.ConfigValueHolder;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -44,10 +43,10 @@ public class DiscordConfigScreen extends Screen {
 	}
 	
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-		renderBackground(poseStack);
-		drawCenteredString(poseStack, font, title, width / 2, 15, 0xFFFFFF);
-		super.render(poseStack, mouseX, mouseY, partialTick);
+	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+		renderBackground(guiGraphics);
+		guiGraphics.drawCenteredString(font, title, width / 2, 15, 0xFFFFFF);
+		super.render(guiGraphics, mouseX, mouseY, partialTick);
 	}
 	
 	@Override
