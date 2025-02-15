@@ -45,7 +45,7 @@ subsystems {
 runs {
 	sourceSets.main.runs.modIdentifier = config.mod.modid
 	sourceSets.data.runs.modIdentifier = config.mod.modid
-		
+	
 	client {
 		workingDirectory file("run/client").with { mkdirs(); it }
 		

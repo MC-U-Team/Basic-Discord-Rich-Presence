@@ -36,7 +36,7 @@ minecraft {
 	mappings channel: config.forge.mapping_channel, version: config.forge.mapping
 	
 	reobf = false
-		
+	
 	runs {
 		client {
 			workingDirectory file("run/client")
