@@ -44,9 +44,8 @@ public class DiscordConfigScreen extends Screen {
 	
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-		renderBackground(guiGraphics, mouseY, mouseY, partialTick);
-		guiGraphics.drawCenteredString(font, title, width / 2, 15, 0xFFFFFF);
 		super.render(guiGraphics, mouseX, mouseY, partialTick);
+		guiGraphics.drawCenteredString(font, title, width / 2, 15, 0xFFFFFF);
 	}
 	
 	@Override
