@@ -2,7 +2,7 @@ package info.u_team.basic_discord_rich_presence.data.provider;
 
 import info.u_team.basic_discord_rich_presence.BasicDiscordRichPresenceMod;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class BasicDiscordRichPresenceEnLanguageProvider extends LanguageProvider {
 	
