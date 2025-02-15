@@ -15,6 +15,7 @@ import net.minecraftforge.versions.mcp.MCPVersion;
 
 public class BasicDiscordRichPresenceClientConstruct {
 	
+	@SuppressWarnings("removal")
 	public static void construct() {
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.CONFIG);
 		ModLoadingContext.get().registerExtensionPoint(ConfigScreenFactory.class, () -> new ConfigScreenFactory((minecraft, screen) -> new DiscordConfigScreen(screen, new ConfigValueHolder<>(ClientConfig.getInstance().discordRichPresence, ClientConfig.getInstance().discordRichPresence::set))));
