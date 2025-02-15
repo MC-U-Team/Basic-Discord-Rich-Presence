@@ -92,7 +92,7 @@ dependencies {
 	
 	modRuntimeOnly "info.u-team:u_team_core-fabric-1.21.1:5.6.2.354"
 	
-	modRuntimeOnly "com.terraformersmc:modmenu:${config.modmenu.fabric.version}"
+	modImplementation "com.terraformersmc:modmenu:${config.modmenu.fabric.version}"
 }
 
 publishMods {
