@@ -95,7 +95,7 @@ processResources {
 dependencies {
 	implementation gradlefiles.neoForgeDependency()
 	
-	compileOnly "info.u-team:u_team_core-neoforge-1.21.1:5.6.2.364"
+	compileOnly "info.u-team:u_team_core-neoforge-1.21.1:5.6.2.384"
 }
 
 publishMods {
