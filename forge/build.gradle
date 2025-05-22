@@ -82,6 +82,9 @@ repositories {
 	maven {
 		url = "https://maven.minecraftforge.net"
 	}
+	maven {
+		url = "https://repo.u-team.info"
+	}
 }
 
 dependencies {
